@@ -26,33 +26,33 @@ namespace PlairesEmulator
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            OleDbConnection conn = new OleDbConnection();
-            string query = "SELECT Location,Roll_No,Remarks,Type FROM Plan,Roll WHERE Plan.Plan_No=Roll.Plan_No AND '"+ cbxPlanType.SelectedText+"-"+txtPlanNo.Text+"'=Roll.Plan_No";
-            //create the connection string
-            string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\Plaires.accdb";
-
-            //create an OleDbDataAdapter to execute the query
-            OleDbDataAdapter dAdapter = new OleDbDataAdapter(query, connString);
-
-            //create a command builder
-            OleDbCommandBuilder cBuilder = new OleDbCommandBuilder(dAdapter);
-
-            //create a DataTable to hold the query results
-            DataSet dTable = new DataSet();
-
-            //fill the DataTable
-            dAdapter.Fill(dTable);
-
-            //BindingSource to sync DataTable and DataGridView
-            BindingSource bSource = new BindingSource();
-
-            //set the BindingSource DataSource
-            bSource.DataSource = dTable;
-
-            //set the DataGridView DataSource
-            this.dgvResult.DataSource = bSource;
-
-            conn.Close();
+            lvInquiry.Items.Clear();
+            //MessageBox.Show("btnOk Start");
+            string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;
+            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";
+            string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";
+            OleDbConnection connection = new OleDbConnection(connetionString);
+            OleDbCommand command=new OleDbCommand(sql,connection);
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string[] values=new string[4];
+                    values[0]=reader.GetString(0);
+                    values[1]=reader.GetString(1);
+                    values[2]=reader.GetString(2);
+                    values[3]=reader.GetString(3);
+                    ListViewItem l = new ListViewItem(values);
+                    lvInquiry.Items.Add(l);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Plan Roll cannot be found");
+            }
+            connection.Close();
         }
 
         private void PLV_Inquiry_FormClosing(object sender, FormClosingEventArgs e)

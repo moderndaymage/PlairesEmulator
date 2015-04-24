@@ -52,11 +52,6 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlairesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PlairesDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="PlanLocVerification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,18 +111,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
-    <None Include="PlairesDataSet.xsc">
-      <DependentUpon>PlairesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PlairesDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PlairesDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PlairesDataSet.xss">
-      <DependentUpon>PlairesDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

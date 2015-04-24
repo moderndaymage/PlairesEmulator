@@ -13,37 +13,46 @@ namespace PlairesEmulator
 {
     public partial class PLV_Inquiry : Form
     {
-        PlanLocVerification p;
+        //Fields
+        PlanLocVerification p;//References the former form PlanLocVerification
+        //Fields End
+
+        //Constructors
         public PLV_Inquiry()
         {
             InitializeComponent();
         }
 
+        //Constructor Overload(For Referencing Former Form PlanLocVerification)
         public PLV_Inquiry(PlanLocVerification p):this()
         {
             this.p = p;
         }
+        //Constructors End
 
+        //Event Handlers
         private void btnOK_Click(object sender, EventArgs e)
         {
-            lvInquiry.Items.Clear();
-            //MessageBox.Show("btnOk Start");
-            string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;
-            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";
+            lvInquiry.Items.Clear();//Clears the former query result
+            string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;//Result of the Plan Type+6 digit No.
+            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";//SQL Query
+            //Note IIF is used to make sure that the null values will not cause exceptions
             string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";
             OleDbConnection connection = new OleDbConnection(connetionString);
             OleDbCommand command=new OleDbCommand(sql,connection);
             connection.Open();
             OleDbDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
+            
+            //Outputs the result in the ListView Oriented in Detail Format
+            if (reader.HasRows)//If query has result
             {
-                while (reader.Read())
+                while (reader.Read())//Show all possible results
                 {
                     string[] values=new string[4];
-                    values[0]=reader.GetString(0);
-                    values[1]=reader.GetString(1);
-                    values[2]=reader.GetString(2);
-                    values[3]=reader.GetString(3);
+                    values[0]=reader.GetString(0);//Location
+                    values[1]=reader.GetString(1);//Roll No.
+                    values[2]=reader.GetString(2);//Remarks
+                    values[3]=reader.GetString(3);//Type of plan
                     ListViewItem l = new ListViewItem(values);
                     lvInquiry.Items.Add(l);
                 }
@@ -55,9 +64,11 @@ namespace PlairesEmulator
             connection.Close();
         }
 
+        //Closing event Causes to return back
         private void PLV_Inquiry_FormClosing(object sender, FormClosingEventArgs e)
         {
-            p.Show();
+            p.Show();//Returns to the PlanLocVerification form
         }
+        //End
     }
 }

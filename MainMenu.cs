@@ -11,15 +11,20 @@ namespace PlairesEmulator
 {
     public partial class MainMenu : Form
     {
+        //Constructors
         public MainMenu()
         {
-            InitializeComponent();
+            InitializeComponent();//GUI Components Here
         }
+        //End Constructors
 
+        //Event Handlers
         private void btnPLV_Click(object sender, EventArgs e)
         {
+            //PlanLocVerification Form Transition(Changes form)
             new PlanLocVerification(this).Show();
             this.Hide();
+            //Hides the form to be ready for use later
         }
     }
 }

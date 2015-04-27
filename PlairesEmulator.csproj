@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,18 @@
     <Compile Include="PLV Maintenance.Designer.cs">
       <DependentUpon>PLV Maintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLV_AddData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLV_AddData.Designer.cs">
+      <DependentUpon>PLV_AddData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLV_EditData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLV_EditData.Designer.cs">
+      <DependentUpon>PLV_EditData.cs</DependentUpon>
+    </Compile>
     <Compile Include="PLV_Inquiry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLV Maintenance.resx">
       <DependentUpon>PLV Maintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLV_AddData.resx">
+      <DependentUpon>PLV_AddData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLV_EditData.resx">
+      <DependentUpon>PLV_EditData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLV_Inquiry.resx">
       <DependentUpon>PLV_Inquiry.cs</DependentUpon>

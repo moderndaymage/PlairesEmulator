@@ -35,7 +35,8 @@ namespace PlairesEmulator
 
         private void btnMaintenance_Click(object sender, EventArgs e)
         {
-
+            new PLV_Maintenance(this).Show();
+            this.Hide();
         }
     }
 }

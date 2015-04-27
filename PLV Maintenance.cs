@@ -11,19 +11,32 @@ namespace PlairesEmulator
 {
     public partial class PLV_Maintenance : Form
     {
+        PlanLocVerification p;
         public PLV_Maintenance()
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        public PLV_Maintenance(PlanLocVerification p):this()
         {
-
+            this.p = p;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
+            new PLV_AddData(this).Show();
+            this.Hide();
+        }
 
+        private void PLV_Maintenance_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            p.Show();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            new PLV_EditData(this).Show();
+            this.Hide();
         }
     }
 }

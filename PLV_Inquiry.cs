@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using System.Data.SqlClient;
+using System.Speech.Synthesis;
 
 namespace PlairesEmulator
 {
@@ -33,35 +33,46 @@ namespace PlairesEmulator
         //Event Handlers
         private void btnOK_Click(object sender, EventArgs e)
         {
-            lvInquiry.Items.Clear();//Clears the former query result
-            string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;//Result of the Plan Type+6 digit No.
-            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";//SQL Query
-            //Note IIF is used to make sure that the null values will not cause exceptions
-            string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";
-            OleDbConnection connection = new OleDbConnection(connetionString);
-            OleDbCommand command=new OleDbCommand(sql,connection);
-            connection.Open();
-            OleDbDataReader reader = command.ExecuteReader();
-            
-            //Outputs the result in the ListView Oriented in Detail Format
-            if (reader.HasRows)//If query has result
+            try
             {
-                while (reader.Read())//Show all possible results
+                lvInquiry.Items.Clear();//Clears the former query result
+                string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;//Result of the Plan Type+6 digit No.
+                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";//SQL Query
+                //Note IIF is used to make sure that the null values will not cause exceptions
+                string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
+                OleDbConnection connection = new OleDbConnection(connetionString);
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                //Outputs the result in the ListView Oriented in Detail Format
+                if (reader.HasRows)//If query has result
                 {
-                    string[] values=new string[4];
-                    values[0]=reader.GetString(0);//Location
-                    values[1]=reader.GetString(1);//Roll No.
-                    values[2]=reader.GetString(2);//Remarks
-                    values[3]=reader.GetString(3);//Type of plan
-                    ListViewItem l = new ListViewItem(values);
-                    lvInquiry.Items.Add(l);
+                    while (reader.Read())//Show all possible results
+                    {
+                        string[] values = new string[4];
+                        values[0] = reader.GetString(0);//Location
+                        values[1] = reader.GetString(1);//Roll No.
+                        values[2] = reader.GetString(2);//Remarks
+                        values[3] = reader.GetString(3);//Type of plan
+                        ListViewItem l = new ListViewItem(values);
+                        lvInquiry.Items.Add(l);
+                    }
                 }
+                else
+                {
+                    SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                    s.SpeakAsync("No Record found");
+                    MessageBox.Show("No Record found");
+                }
+                connection.Close();
             }
-            else
+            catch
             {
-                MessageBox.Show("Plan Roll cannot be found");
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("Invalid Query");
+                MessageBox.Show("Invalid Query");
             }
-            connection.Close();
         }
 
         //Closing event Causes to return back

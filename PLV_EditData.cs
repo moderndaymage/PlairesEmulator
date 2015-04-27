@@ -27,7 +27,7 @@ namespace PlairesEmulator
 
         private void PLV_EditData_Load(object sender, EventArgs e)
         {
-                string sql = "SELECT Plan_No from Roll;";//SQL Query
+                string sql = "SELECT Plan_No from Roll ORDER BY Plan_No;";//SQL Query
                 string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
                 OleDbConnection connection = new OleDbConnection(connetionString);
                 OleDbCommand command = new OleDbCommand(sql, connection);
@@ -83,6 +83,7 @@ namespace PlairesEmulator
                         txtLocation.Text=values[0];
                         txtRollNo.Text=values[1];
                         txtRemarks.Text=values[2];
+                        this.SetCheckedRadio(this, values[3]);
                     }
                 }
                 else
@@ -98,6 +99,72 @@ namespace PlairesEmulator
                 SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
                 s.SpeakAsync("Invalid Plan No");
                 MessageBox.Show("Invalid Plan No");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Validators:
+                //Once an Input is wrong Exceptions will be thrown
+                if (this.GetCheckedRadio(this) == null)
+                    throw new Exception();
+
+                string sql = "UPDATE Roll SET Location='" + txtLocation.Text + "',Roll_No='" + txtRollNo.Text + "' WHERE Plan_No='"+cbxPlanNo.SelectedItem.ToString()+"'";
+                string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
+                OleDbConnection connection = new OleDbConnection(connetionString);
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
+                    sql = "UPDATE Roll SET Remarks='" + txtRemarks.Text + "' WHERE Plan_No='" + cbxPlanNo.SelectedItem.ToString() + "'";
+                    command = new OleDbCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                sql = "UPDATE Roll SET Type='" + GetCheckedRadio(this).Text + "' WHERE Plan_No='" + cbxPlanNo.SelectedItem.ToString() + "'";
+                command = new OleDbCommand(sql, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
+                txtLocation.Clear();
+                txtRemarks.Clear();
+                txtRollNo.Clear();
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("Data Sucessfully Updated");
+                MessageBox.Show("Data Successfully Updated");
+
+            }
+            catch(Exception ex)
+            {
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("Invalid Update");
+                MessageBox.Show("Invalid Update");
+            }
+        }
+
+        RadioButton GetCheckedRadio(Control container)
+        {
+            foreach (var control in container.Controls)
+            {
+                RadioButton radio = control as RadioButton;
+                if (radio != null && radio.Checked)
+                    return radio;
+            }
+            return null;
+        }
+
+        public void SetCheckedRadio(Control container,string input)
+        {
+            foreach (var control in container.Controls)
+            {
+                RadioButton radio = control as RadioButton;
+                if (radio != null && radio.Text == input)
+                    radio.Select();
             }
         }
     }

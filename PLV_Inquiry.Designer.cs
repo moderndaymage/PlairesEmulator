@@ -38,6 +38,7 @@
             this.chRollNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chRemarks = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbxPlanType
@@ -49,24 +50,24 @@
             "(LRC)PCN",
             "(LRC)RL",
             "(LRC)RS"});
-            this.cbxPlanType.Location = new System.Drawing.Point(94, 10);
+            this.cbxPlanType.Location = new System.Drawing.Point(235, 8);
             this.cbxPlanType.Margin = new System.Windows.Forms.Padding(4);
             this.cbxPlanType.Name = "cbxPlanType";
-            this.cbxPlanType.Size = new System.Drawing.Size(160, 24);
+            this.cbxPlanType.Size = new System.Drawing.Size(164, 24);
             this.cbxPlanType.TabIndex = 0;
             // 
             // txtPlanNo
             // 
-            this.txtPlanNo.Location = new System.Drawing.Point(94, 43);
+            this.txtPlanNo.Location = new System.Drawing.Point(235, 41);
             this.txtPlanNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPlanNo.Name = "txtPlanNo";
-            this.txtPlanNo.Size = new System.Drawing.Size(132, 22);
+            this.txtPlanNo.Size = new System.Drawing.Size(136, 22);
             this.txtPlanNo.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 10);
+            this.label1.Location = new System.Drawing.Point(150, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 17);
@@ -76,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 47);
+            this.label2.Location = new System.Drawing.Point(150, 45);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
@@ -85,12 +86,12 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(256, 41);
+            this.btnOK.Location = new System.Drawing.Point(375, 41);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(100, 28);
+            this.btnOK.Size = new System.Drawing.Size(94, 28);
             this.btnOK.TabIndex = 5;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "Search";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -127,11 +128,23 @@
             this.chType.Text = "Type";
             this.chType.Width = 144;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 19);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 25);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Search for:";
+            // 
             // PLV_Inquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 244);
+            this.ClientSize = new System.Drawing.Size(482, 234);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lvInquiry);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label2);
@@ -159,5 +172,6 @@
         private System.Windows.Forms.ColumnHeader chRollNo;
         private System.Windows.Forms.ColumnHeader chRemarks;
         private System.Windows.Forms.ColumnHeader chType;
+        private System.Windows.Forms.Label label3;
     }
 }

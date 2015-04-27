@@ -36,7 +36,7 @@
             // btnMaintenance
             // 
             this.btnMaintenance.Location = new System.Drawing.Point(16, 60);
-            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMaintenance.Name = "btnMaintenance";
             this.btnMaintenance.Size = new System.Drawing.Size(187, 28);
             this.btnMaintenance.TabIndex = 0;
@@ -58,7 +58,7 @@
             // btnInquiry
             // 
             this.btnInquiry.Location = new System.Drawing.Point(16, 96);
-            this.btnInquiry.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInquiry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnInquiry.Name = "btnInquiry";
             this.btnInquiry.Size = new System.Drawing.Size(187, 28);
             this.btnInquiry.TabIndex = 3;
@@ -74,9 +74,9 @@
             this.Controls.Add(this.btnInquiry);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMaintenance);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PlanLocVerification";
-            this.Text = "pLaiRes Emulator";
+            this.Text = "PlanLocVerification";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlanLocVerification_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

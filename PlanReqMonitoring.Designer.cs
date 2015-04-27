@@ -47,7 +47,7 @@
             // btnMonitor
             // 
             this.btnMonitor.Location = new System.Drawing.Point(25, 60);
-            this.btnMonitor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMonitor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(187, 28);
             this.btnMonitor.TabIndex = 4;
@@ -57,7 +57,7 @@
             // btnMaintenance
             // 
             this.btnMaintenance.Location = new System.Drawing.Point(25, 96);
-            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMaintenance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMaintenance.Name = "btnMaintenance";
             this.btnMaintenance.Size = new System.Drawing.Size(187, 28);
             this.btnMaintenance.TabIndex = 5;
@@ -72,9 +72,9 @@
             this.Controls.Add(this.btnMaintenance);
             this.Controls.Add(this.btnMonitor);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PlanReqMonitoring";
-            this.Text = "pLaiRes Emulator";
+            this.Text = "PlanReqMonitoring";
             this.ResumeLayout(false);
             this.PerformLayout();
 

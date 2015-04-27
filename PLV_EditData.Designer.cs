@@ -193,7 +193,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxPlanNo);
             this.Name = "PLV_EditData";
-            this.Text = "pLaiRes Emulator";
+            this.Text = "PLV_EditData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PLV_EditData_FormClosing);
             this.Load += new System.EventHandler(this.PLV_EditData_Load);
             this.ResumeLayout(false);

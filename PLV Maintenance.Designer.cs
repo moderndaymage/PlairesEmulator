@@ -110,7 +110,7 @@
             this.Controls.Add(this.btnAdd);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PLV_Maintenance";
-            this.Text = "pLaiRes Emulator";
+            this.Text = "PLV_Maintenance";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PLV_Maintenance_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

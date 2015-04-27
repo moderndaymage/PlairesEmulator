@@ -49,16 +49,16 @@
             "(LRC)PCN",
             "(LRC)RL",
             "(LRC)RS"});
-            this.cbxPlanType.Location = new System.Drawing.Point(94, 10);
-            this.cbxPlanType.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPlanType.Location = new System.Drawing.Point(101, 43);
+            this.cbxPlanType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxPlanType.Name = "cbxPlanType";
             this.cbxPlanType.Size = new System.Drawing.Size(160, 24);
             this.cbxPlanType.TabIndex = 0;
             // 
             // txtPlanNo
             // 
-            this.txtPlanNo.Location = new System.Drawing.Point(94, 43);
-            this.txtPlanNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPlanNo.Location = new System.Drawing.Point(101, 76);
+            this.txtPlanNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPlanNo.Name = "txtPlanNo";
             this.txtPlanNo.Size = new System.Drawing.Size(132, 22);
             this.txtPlanNo.TabIndex = 1;
@@ -66,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 10);
+            this.label1.Location = new System.Drawing.Point(16, 43);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 17);
@@ -76,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 47);
+            this.label2.Location = new System.Drawing.Point(16, 80);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
@@ -85,8 +85,8 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(256, 41);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOK.Location = new System.Drawing.Point(263, 74);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 28);
             this.btnOK.TabIndex = 5;
@@ -101,7 +101,7 @@
             this.chRollNo,
             this.chRemarks,
             this.chType});
-            this.lvInquiry.Location = new System.Drawing.Point(12, 76);
+            this.lvInquiry.Location = new System.Drawing.Point(19, 109);
             this.lvInquiry.Name = "lvInquiry";
             this.lvInquiry.Size = new System.Drawing.Size(463, 150);
             this.lvInquiry.TabIndex = 6;
@@ -131,16 +131,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 244);
+            this.ClientSize = new System.Drawing.Size(504, 384);
             this.Controls.Add(this.lvInquiry);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPlanNo);
             this.Controls.Add(this.cbxPlanType);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PLV_Inquiry";
-            this.Text = "pLaiRes Emulator";
+            this.Text = "PLV_Inquiry";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PLV_Inquiry_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

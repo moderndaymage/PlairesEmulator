@@ -60,7 +60,8 @@ namespace PlairesEmulator
         {
             try
             {
-                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" +cbxPlanNo.SelectedText + "';";//SQL Query
+                //MessageBox.Show(cbxPlanNo.SelectedItem.ToString());
+                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE (Plan_No='" +cbxPlanNo.SelectedItem.ToString() + "')";//SQL Query
                 //Note IIF is used to make sure that the null values will not cause exceptions
                 string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
                 OleDbConnection connection = new OleDbConnection(connetionString);
@@ -68,7 +69,7 @@ namespace PlairesEmulator
                 connection.Open();
                 OleDbDataReader reader = command.ExecuteReader();
 
-                //Outputs the result in the ListView Oriented in Detail Format
+                //Outputs the result in the All the forms Oriented in Detail Format
                 if (reader.HasRows)//If query has result
                 {
                     while (reader.Read())//Show all possible results

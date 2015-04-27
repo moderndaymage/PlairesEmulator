@@ -42,7 +42,7 @@ namespace PlairesEmulator
                 if (txtPlanNo.Text.Length > 6)
                     throw new Exception();
 
-                string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;//Result of the Plan Type+6 digit No.
+                string parameter = cbxPlanType.SelectedItem.ToString() + "-" + int.Parse(txtPlanNo.Text);//Result of the Plan Type+6 digit No.
                 string sql = "INSERT INTO Roll(Plan_No,Location,Roll_No,Type) VALUES('" + parameter + "','" + txtLocation.Text + "','" + txtRollNo.Text + "','Original')";
                 string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
                 OleDbConnection connection = new OleDbConnection(connetionString);

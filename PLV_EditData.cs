@@ -58,6 +58,8 @@ namespace PlairesEmulator
 
         private void cbxPlanNo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
                 string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" +cbxPlanNo.SelectedText + "';";//SQL Query
                 //Note IIF is used to make sure that the null values will not cause exceptions
                 string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't

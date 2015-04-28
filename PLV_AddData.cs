@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
 using System.Data.OleDb;
+using System.IO;
 
 namespace PlairesEmulator
 {
@@ -77,9 +78,9 @@ namespace PlairesEmulator
             }
             catch
             {
-              SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-              s.SpeakAsync("Invalid Input");
-              MessageBox.Show("Invalid Input");
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("Invalid Input");
+                MessageBox.Show("Invalid Input");
             }
         }
         RadioButton GetCheckedRadio(Control container)
@@ -99,43 +100,37 @@ namespace PlairesEmulator
             o.Title = "Open .xlsx file to Import";
             if (o.ShowDialog() == DialogResult.OK)
             {
-                //try
-                //{
-                    MessageBox.Show(o.FileName);
-                    OleDbConnection connection = new OleDbConnection("provider=Microsoft.ACE.OLEDB.12.0;DataSource='" + o.FileName + "';Extended Properties=Excel 12.0;");
-                    OleDbCommand command = new OleDbCommand("SELECT * FROM [Roll$] ORDER BY Plan_No", connection);
+                MLApp.MLApp matlab = new MLApp.MLApp();
+                matlab.Visible = 0;
+                matlab.Execute("xls2file('" + o.FileName + "');");
+                matlab.Quit();
+                var file2db =
+                    from contents in File.ReadAllLines("C:\\Users\\user\\Documents\\MATLAB\\Excel2file.txt")
+                    select contents;
+                foreach (string line in file2db)
+                {
+                    char[] separator = { '/' };
+                    string[] separatedContents = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    //Query Portion
+                    string sql = "INSERT INTO Roll(Plan_No,Location,Roll_No,Type) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','"+separatedContents[3]+"')";
+                    string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
+                    OleDbConnection connection = new OleDbConnection(connetionString);
+                    OleDbCommand command = new OleDbCommand(sql, connection);
                     connection.Open();
-                    OleDbDataReader reader = command.ExecuteReader();
+                    command.ExecuteNonQuery();
                     connection.Close();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            string[] values = new string[5];
-                            try
-                            {
-                                OleDbConnection accessDBConnection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;");
-                                OleDbCommand accessDBCommand=new OleDbCommand("INSERT INTO Roll Values('"+reader.GetString(0)+"','"+reader.GetString(1)+"','"+reader.GetString(2)+"','"+reader.GetString(3)+"','"+reader.GetString(4)+"');",accessDBConnection);
-                                accessDBConnection.Open();
-                                accessDBCommand.ExecuteNonQuery();
-                                accessDBConnection.Close();
-                                MessageBox.Show(reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetString(3) +
-                                    " " + reader.GetString(4) + " is successfully Imported to the Plaires.accdb");
 
-                            }
-                            catch
-                            {
-                                MessageBox.Show(reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetString(3) +
-                                    " " + reader.GetString(4) + " Cannot be imported due to conflict with the Database Rules of Plaires.accdb");
-                            }
-                        }
-                    }
-                    else MessageBox.Show("No Data to Import");
-                //}
-                //catch
-                //{
-                //    MessageBox.Show("Data to Import not compatible with the Database");
-                //}
+                    //if (txtRemarks.Text.Length > 0)
+                    //{
+                        //sql = "UPDATE Roll SET Remarks='" + txtRemarks.Text + "' WHERE Plan_No='" + parameter + "'";
+                        //command = new OleDbCommand(sql, connection);
+                        //connection.Open();
+                        //command.ExecuteNonQuery();
+                        //connection.Close();
+                    //}
+                    
+                }
             }
         }
     }

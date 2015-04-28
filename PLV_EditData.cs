@@ -86,7 +86,7 @@ namespace PlairesEmulator
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-
+                txtPlanNo.Clear();
                 txtLocation.Clear();
                 txtRemarks.Clear();
                 txtRollNo.Clear();
@@ -154,6 +154,31 @@ namespace PlairesEmulator
                 }
             //}
             //catch { }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            OleDbConnection connection = Database.Connect();
+            OleDbCommand command = new OleDbCommand("DELETE FROM Roll WHERE Plan_No='" + txtPlanNo.Text + "';", connection);
+            if (txtPlanNo.Text.Length > 0)
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                SpeechSynthesizer s = new SpeechSynthesizer();
+                s.SpeakAsync("Data Successfully Deleted");
+                MessageBox.Show("Data Successfully Deleted");
+                txtPlanNo.Clear();
+                txtLocation.Clear();
+                txtRemarks.Clear();
+                txtRollNo.Clear();
+            }
+            else
+            {
+                SpeechSynthesizer s = new SpeechSynthesizer();
+                s.SpeakAsync("No Data to Delete");
+                MessageBox.Show("No Data to Delete");
+            }
         }
     }
 }

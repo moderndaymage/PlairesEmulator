@@ -51,6 +51,8 @@
             this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtPlanNo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rbtOriginal
@@ -99,7 +101,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(76, 322);
+            this.btnUpdate.Location = new System.Drawing.Point(76, 327);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 34);
             this.btnUpdate.TabIndex = 28;
@@ -201,9 +203,9 @@
             this.chType,
             this.chRollNo});
             this.lvEditData.FullRowSelect = true;
-            this.lvEditData.Location = new System.Drawing.Point(242, 50);
+            this.lvEditData.Location = new System.Drawing.Point(242, 55);
             this.lvEditData.Name = "lvEditData";
-            this.lvEditData.Size = new System.Drawing.Size(551, 306);
+            this.lvEditData.Size = new System.Drawing.Size(614, 306);
             this.lvEditData.TabIndex = 35;
             this.lvEditData.UseCompatibleStateImageBehavior = false;
             this.lvEditData.View = System.Windows.Forms.View.Details;
@@ -222,17 +224,17 @@
             // chRemarks
             // 
             this.chRemarks.Text = "Remarks";
-            this.chRemarks.Width = 151;
+            this.chRemarks.Width = 176;
             // 
             // chRollNo
             // 
             this.chRollNo.Text = "Roll No";
-            this.chRollNo.Width = 67;
+            this.chRollNo.Width = 87;
             // 
             // chType
             // 
             this.chType.Text = "Type";
-            this.chType.Width = 86;
+            this.chType.Width = 106;
             // 
             // txtPlanNo
             // 
@@ -251,11 +253,32 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "Available Plans:";
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(161, 327);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 34);
+            this.btnRemove.TabIndex = 38;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 336);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 17);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "Action:";
+            // 
             // PLV_EditData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 360);
+            this.ClientSize = new System.Drawing.Size(868, 373);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtPlanNo);
             this.Controls.Add(this.lvEditData);
@@ -308,5 +331,7 @@
         private System.Windows.Forms.ColumnHeader chType;
         private System.Windows.Forms.TextBox txtPlanNo;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Label label9;
     }
 }

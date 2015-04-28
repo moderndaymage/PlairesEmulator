@@ -45,8 +45,7 @@ namespace PlairesEmulator
 
                 string parameter = cbxPlanType.SelectedItem.ToString() + "-" + int.Parse(txtPlanNo.Text);//Result of the Plan Type+6 digit No.
                 string sql = "INSERT INTO Roll(Plan_No,Location,Roll_No,Type) VALUES('" + parameter + "','" + txtLocation.Text + "','" + txtRollNo.Text + "','Original')";
-                string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-                OleDbConnection connection = new OleDbConnection(connetionString);
+                OleDbConnection connection = Database.Connect();
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -123,8 +122,7 @@ namespace PlairesEmulator
                         }
                         else
                             sql = "INSERT INTO Roll(Plan_No,Location,Remarks,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "','" + separatedContents[4] + "');";
-                        string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-                        OleDbConnection connection = new OleDbConnection(connetionString);
+                        OleDbConnection connection = Database.Connect();
                         OleDbCommand command = new OleDbCommand(sql, connection);
                         connection.Open();
                         command.ExecuteNonQuery();

@@ -39,8 +39,7 @@ namespace PlairesEmulator
                 string parameter = cbxPlanType.SelectedItem.ToString() + "-" + txtPlanNo.Text;//Result of the Plan Type+6 digit No.
                 string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE Plan_No='" + parameter + "';";//SQL Query
                 //Note IIF is used to make sure that the null values will not cause exceptions
-                string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-                OleDbConnection connection = new OleDbConnection(connetionString);
+                OleDbConnection connection = Database.Connect();
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 connection.Open();
                 OleDbDataReader reader = command.ExecuteReader();

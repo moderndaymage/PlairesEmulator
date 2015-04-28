@@ -46,6 +46,7 @@
             this.rbtOriginal = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnImport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbxPlanType
@@ -147,7 +148,7 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(99, 364);
+            this.btnInsert.Location = new System.Drawing.Point(19, 364);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(75, 34);
             this.btnInsert.TabIndex = 12;
@@ -218,11 +219,22 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Add new Plan";
             // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(123, 364);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(136, 34);
+            this.btnImport.TabIndex = 19;
+            this.btnImport.Text = "Import From Excel";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // PLV_AddData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 407);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rbtOriginal);
@@ -269,5 +281,6 @@
         private System.Windows.Forms.RadioButton rbtOriginal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnImport;
     }
 }

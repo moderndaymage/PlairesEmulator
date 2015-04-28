@@ -109,27 +109,31 @@ namespace PlairesEmulator
                     select contents;
                 foreach (string line in file2db)
                 {
-                    char[] separator = { '/' };
-                    string[] separatedContents = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-                    
-                    //Query Portion
-                    string sql = "INSERT INTO Roll(Plan_No,Location,Roll_No,Type) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','"+separatedContents[3]+"')";
-                    string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-                    OleDbConnection connection = new OleDbConnection(connetionString);
-                    OleDbCommand command = new OleDbCommand(sql, connection);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
+                    try
+                    {
+                        char[] separator = { '/' };
+                        string[] separatedContents = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
-                    //if (txtRemarks.Text.Length > 0)
-                    //{
-                        //sql = "UPDATE Roll SET Remarks='" + txtRemarks.Text + "' WHERE Plan_No='" + parameter + "'";
-                        //command = new OleDbCommand(sql, connection);
-                        //connection.Open();
-                        //command.ExecuteNonQuery();
-                        //connection.Close();
-                    //}
-                    
+                        //Query Portion
+                        string sql;
+                        MessageBox.Show(separatedContents.Length + "");
+                        if (separatedContents.Length < 5)
+                        {
+                            sql = "INSERT INTO Roll(Plan_No,Location,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "')";
+                        }
+                        else
+                            sql = "INSERT INTO Roll(Plan_No,Location,Remarks,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "','" + separatedContents[4] + "');";
+                        string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
+                        OleDbConnection connection = new OleDbConnection(connetionString);
+                        OleDbCommand command = new OleDbCommand(sql, connection);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }

@@ -41,9 +41,16 @@
             this.txtRollNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxPlanNo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.lvEditData = new System.Windows.Forms.ListView();
+            this.chPlanNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chRemarks = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chRollNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtPlanNo = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // rbtOriginal
@@ -166,16 +173,6 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Plan No:*";
             // 
-            // cbxPlanNo
-            // 
-            this.cbxPlanNo.FormattingEnabled = true;
-            this.cbxPlanNo.Location = new System.Drawing.Point(76, 86);
-            this.cbxPlanNo.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxPlanNo.Name = "cbxPlanNo";
-            this.cbxPlanNo.Size = new System.Drawing.Size(160, 24);
-            this.cbxPlanNo.TabIndex = 17;
-            this.cbxPlanNo.SelectedIndexChanged += new System.EventHandler(this.cbxPlanNo_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -195,11 +192,73 @@
             this.label7.TabIndex = 34;
             this.label7.Text = "*-Required Fields";
             // 
+            // lvEditData
+            // 
+            this.lvEditData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chPlanNo,
+            this.chLocation,
+            this.chRemarks,
+            this.chType,
+            this.chRollNo});
+            this.lvEditData.FullRowSelect = true;
+            this.lvEditData.Location = new System.Drawing.Point(242, 50);
+            this.lvEditData.Name = "lvEditData";
+            this.lvEditData.Size = new System.Drawing.Size(551, 306);
+            this.lvEditData.TabIndex = 35;
+            this.lvEditData.UseCompatibleStateImageBehavior = false;
+            this.lvEditData.View = System.Windows.Forms.View.Details;
+            this.lvEditData.SelectedIndexChanged += new System.EventHandler(this.lvInquiry_SelectedIndexChanged);
+            // 
+            // chPlanNo
+            // 
+            this.chPlanNo.Text = "Plan No";
+            this.chPlanNo.Width = 103;
+            // 
+            // chLocation
+            // 
+            this.chLocation.Text = "Location";
+            this.chLocation.Width = 136;
+            // 
+            // chRemarks
+            // 
+            this.chRemarks.Text = "Remarks";
+            this.chRemarks.Width = 151;
+            // 
+            // chRollNo
+            // 
+            this.chRollNo.Text = "Roll No";
+            this.chRollNo.Width = 67;
+            // 
+            // chType
+            // 
+            this.chType.Text = "Type";
+            this.chType.Width = 86;
+            // 
+            // txtPlanNo
+            // 
+            this.txtPlanNo.Location = new System.Drawing.Point(76, 86);
+            this.txtPlanNo.Name = "txtPlanNo";
+            this.txtPlanNo.ReadOnly = true;
+            this.txtPlanNo.Size = new System.Drawing.Size(160, 22);
+            this.txtPlanNo.TabIndex = 36;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(242, 30);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 17);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Available Plans:";
+            // 
             // PLV_EditData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 360);
+            this.ClientSize = new System.Drawing.Size(805, 360);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtPlanNo);
+            this.Controls.Add(this.lvEditData);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rbtOriginal);
@@ -215,7 +274,6 @@
             this.Controls.Add(this.txtRollNo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbxPlanNo);
             this.Name = "PLV_EditData";
             this.Text = "pLaiRes Emulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PLV_EditData_FormClosing);
@@ -240,8 +298,15 @@
         private System.Windows.Forms.TextBox txtRollNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbxPlanNo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListView lvEditData;
+        private System.Windows.Forms.ColumnHeader chPlanNo;
+        private System.Windows.Forms.ColumnHeader chLocation;
+        private System.Windows.Forms.ColumnHeader chRemarks;
+        private System.Windows.Forms.ColumnHeader chRollNo;
+        private System.Windows.Forms.ColumnHeader chType;
+        private System.Windows.Forms.TextBox txtPlanNo;
+        private System.Windows.Forms.Label label8;
     }
 }

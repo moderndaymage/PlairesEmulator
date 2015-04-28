@@ -27,7 +27,7 @@ namespace PlairesEmulator
 
         private void PLV_EditData_Load(object sender, EventArgs e)
         {
-                string sql = "SELECT Plan_No from Roll ORDER BY Plan_No;";//SQL Query
+            string sql = "SELECT Plan_No from Roll ORDER BY Plan_No;";//SQL Query
                 string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
                 OleDbConnection connection = new OleDbConnection(connetionString);
                 OleDbCommand command = new OleDbCommand(sql, connection);
@@ -158,7 +158,7 @@ namespace PlairesEmulator
             return null;
         }
 
-        public void SetCheckedRadio(Control container,string input)
+        void SetCheckedRadio(Control container,string input)
         {
             foreach (var control in container.Controls)
             {

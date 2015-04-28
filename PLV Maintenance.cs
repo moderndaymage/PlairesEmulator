@@ -38,5 +38,11 @@ namespace PlairesEmulator
             new PLV_EditData(this).Show();
             this.Hide();
         }
+
+        private void btnReindex_Click(object sender, EventArgs e)
+        {
+            new PLV_Reindex(this).Show();
+            this.Hide();
+        }
     }
 }

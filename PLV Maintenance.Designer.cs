@@ -32,8 +32,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnReindex = new System.Windows.Forms.Button();
             this.btnPassword = new System.Windows.Forms.Button();
-            this.mtxPassword = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -67,6 +67,7 @@
             this.btnReindex.TabIndex = 2;
             this.btnReindex.Text = "File Reindexing";
             this.btnReindex.UseVisualStyleBackColor = true;
+            this.btnReindex.Click += new System.EventHandler(this.btnReindex_Click);
             // 
             // btnPassword
             // 
@@ -78,32 +79,31 @@
             this.btnPassword.Text = "Change Password";
             this.btnPassword.UseVisualStyleBackColor = true;
             // 
-            // mtxPassword
-            // 
-            this.mtxPassword.Location = new System.Drawing.Point(210, 46);
-            this.mtxPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.mtxPassword.Mask = "*";
-            this.mtxPassword.Name = "mtxPassword";
-            this.mtxPassword.Size = new System.Drawing.Size(132, 22);
-            this.mtxPassword.TabIndex = 4;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(210, 23);
+            this.label1.Location = new System.Drawing.Point(210, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Password:";
             // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(213, 45);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(164, 22);
+            this.txtPassword.TabIndex = 6;
+            // 
             // PLV_Maintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 254);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.mtxPassword);
             this.Controls.Add(this.btnPassword);
             this.Controls.Add(this.btnReindex);
             this.Controls.Add(this.btnEdit);
@@ -123,7 +123,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnReindex;
         private System.Windows.Forms.Button btnPassword;
-        private System.Windows.Forms.MaskedTextBox mtxPassword;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

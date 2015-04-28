@@ -89,6 +89,12 @@
     <Compile Include="PLV_Inquiry.Designer.cs">
       <DependentUpon>PLV_Inquiry.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLV_Reindex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLV_Reindex.Designer.cs">
+      <DependentUpon>PLV_Reindex.cs</DependentUpon>
+    </Compile>
     <Compile Include="PRM Maintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PLV_Inquiry.resx">
       <DependentUpon>PLV_Inquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLV_Reindex.resx">
+      <DependentUpon>PLV_Reindex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PRM Maintenance.resx">
       <DependentUpon>PRM Maintenance.cs</DependentUpon>

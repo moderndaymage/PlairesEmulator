@@ -47,6 +47,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lvAddData = new System.Windows.Forms.ListView();
+            this.chPlanNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chRemarks = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chRollNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cbxPlanType
@@ -229,11 +236,63 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(285, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(127, 17);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "Plans in Database:";
+            // 
+            // lvAddData
+            // 
+            this.lvAddData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chPlanNo,
+            this.chLocation,
+            this.chRemarks,
+            this.chType,
+            this.chRollNo});
+            this.lvAddData.FullRowSelect = true;
+            this.lvAddData.Location = new System.Drawing.Point(288, 51);
+            this.lvAddData.Name = "lvAddData";
+            this.lvAddData.Size = new System.Drawing.Size(614, 364);
+            this.lvAddData.TabIndex = 38;
+            this.lvAddData.UseCompatibleStateImageBehavior = false;
+            this.lvAddData.View = System.Windows.Forms.View.Details;
+            // 
+            // chPlanNo
+            // 
+            this.chPlanNo.Text = "Plan No";
+            this.chPlanNo.Width = 103;
+            // 
+            // chLocation
+            // 
+            this.chLocation.Text = "Location";
+            this.chLocation.Width = 136;
+            // 
+            // chRemarks
+            // 
+            this.chRemarks.Text = "Remarks";
+            this.chRemarks.Width = 176;
+            // 
+            // chType
+            // 
+            this.chType.Text = "Type";
+            this.chType.Width = 106;
+            // 
+            // chRollNo
+            // 
+            this.chRollNo.Text = "Roll No";
+            this.chRollNo.Width = 87;
+            // 
             // PLV_AddData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 423);
+            this.ClientSize = new System.Drawing.Size(915, 423);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lvAddData);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -256,6 +315,7 @@
             this.Name = "PLV_AddData";
             this.Text = "pLaiRes Emulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PLV_AddData_FormClosing);
+            this.Load += new System.EventHandler(this.PLV_AddData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +342,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ListView lvAddData;
+        private System.Windows.Forms.ColumnHeader chPlanNo;
+        private System.Windows.Forms.ColumnHeader chLocation;
+        private System.Windows.Forms.ColumnHeader chRemarks;
+        private System.Windows.Forms.ColumnHeader chType;
+        private System.Windows.Forms.ColumnHeader chRollNo;
     }
 }

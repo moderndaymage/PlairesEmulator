@@ -73,6 +73,7 @@ namespace PlairesEmulator
                 SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
                 s.SpeakAsync("Data Sucessfully Entered");
                 MessageBox.Show("Data Successfully Entered");
+                PLV_AddData_Load(sender, e);
 
             }
             catch
@@ -117,9 +118,7 @@ namespace PlairesEmulator
                         string sql;
                         MessageBox.Show(separatedContents.Length + "");
                         if (separatedContents.Length < 5)
-                        {
                             sql = "INSERT INTO Roll(Plan_No,Location,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "')";
-                        }
                         else
                             sql = "INSERT INTO Roll(Plan_No,Location,Remarks,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "','" + separatedContents[4] + "');";
                         OleDbConnection connection = Database.Connect();
@@ -127,13 +126,47 @@ namespace PlairesEmulator
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
+                        SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                        s.SpeakAsync(line+" is successfully added");
+                        MessageBox.Show(line + " is successfully added");
                     }
                     catch
                     {
-
+                        SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                        s.SpeakAsync(line + " is not Added due to Database Rules Conflict");
+                        MessageBox.Show(line+" is not Added due to Database Rules Conflict");
                     }
+                    this.PLV_AddData_Load(sender, e);
                 }
             }
+        }
+
+        private void PLV_AddData_Load(object sender, EventArgs e)
+        {
+            lvAddData.Items.Clear();
+            string sql = "SELECT Plan_No,Location,IIF(Remarks IS NULL,' ',Remarks),Type,Roll_No from Roll ORDER BY Plan_No;";//SQL Query
+            OleDbConnection connection = Database.Connect();
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
+
+            //Outputs the result in the ListView Oriented in Detail Format
+            if (reader.HasRows)//If query has result
+            {
+                while (reader.Read())//Show all possible results
+                {
+                    string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
+                    ListViewItem l = new ListViewItem(data);
+                    lvAddData.Items.Add(l);
+                }
+            }
+            else
+            {
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("No Record found");
+                MessageBox.Show("No Record found");
+            }
+            connection.Close();
         }
     }
 }

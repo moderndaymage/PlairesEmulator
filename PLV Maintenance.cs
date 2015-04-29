@@ -24,8 +24,13 @@ namespace PlairesEmulator
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            new PLV_AddData(this).Show();
-            this.Hide();
+            if (txtPassword.Text == "Admin")
+            {
+                new PLV_AddData(this).Show();
+                this.Hide();
+                txtPassword.Clear();
+            }
+            else MessageBox.Show("Invalid Credentials");
         }
 
         private void PLV_Maintenance_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,14 +40,24 @@ namespace PlairesEmulator
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            new PLV_EditData(this).Show();
-            this.Hide();
+            if (txtPassword.Text == "Admin")
+            {
+                new PLV_EditData(this).Show();
+                this.Hide();
+                txtPassword.Clear();
+            }
+            else MessageBox.Show("Invalid Credentials");
         }
 
         private void btnReindex_Click(object sender, EventArgs e)
         {
-            new PLV_Reindex(this).Show();
-            this.Hide();
+            if (txtPassword.Text == "Admin")
+            {
+                new PLV_Reindex(this).Show();
+                this.Hide();
+                txtPassword.Clear();
+            }
+            else MessageBox.Show("Invalid Credentials");
         }
     }
 }

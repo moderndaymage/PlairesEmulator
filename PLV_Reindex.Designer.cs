@@ -41,12 +41,12 @@
             this.txtRollNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxPlanNo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPlanNo = new System.Windows.Forms.TextBox();
             this.cbxPlanType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.cbxPlanNo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // rbtOriginal
@@ -176,16 +176,6 @@
             this.label1.TabIndex = 34;
             this.label1.Text = "Plan No:*";
             // 
-            // cbxPlanNo
-            // 
-            this.cbxPlanNo.FormattingEnabled = true;
-            this.cbxPlanNo.Location = new System.Drawing.Point(120, 45);
-            this.cbxPlanNo.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxPlanNo.Name = "cbxPlanNo";
-            this.cbxPlanNo.Size = new System.Drawing.Size(160, 24);
-            this.cbxPlanNo.TabIndex = 33;
-            this.cbxPlanNo.SelectedIndexChanged += new System.EventHandler(this.cbxPlanNo_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -239,6 +229,16 @@
             this.label8.TabIndex = 51;
             this.label8.Text = "Reindex Plan";
             // 
+            // cbxPlanNo
+            // 
+            this.cbxPlanNo.FormattingEnabled = true;
+            this.cbxPlanNo.Location = new System.Drawing.Point(120, 45);
+            this.cbxPlanNo.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPlanNo.Name = "cbxPlanNo";
+            this.cbxPlanNo.Size = new System.Drawing.Size(160, 24);
+            this.cbxPlanNo.TabIndex = 33;
+            this.cbxPlanNo.SelectedIndexChanged += new System.EventHandler(this.cbxPlanNo_SelectedIndexChanged);
+            // 
             // PLV_Reindex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -287,11 +287,11 @@
         private System.Windows.Forms.TextBox txtRollNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbxPlanNo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPlanNo;
         private System.Windows.Forms.ComboBox cbxPlanType;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbxPlanNo;
     }
 }

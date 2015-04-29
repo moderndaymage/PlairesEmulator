@@ -27,29 +27,30 @@ namespace PlairesEmulator
 
         private void PLV_EditData_Load(object sender, EventArgs e)
         {
+            lvEditData.Items.Clear();
             string sql = "SELECT Plan_No,Location,IIF(Remarks IS NULL,' ',Remarks),Type,Roll_No from Roll ORDER BY Plan_No;";//SQL Query
             OleDbConnection connection = Database.Connect();
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
 
-                //Outputs the result in the ListView Oriented in Detail Format
-                if (reader.HasRows)//If query has result
+            //Outputs the result in the ListView Oriented in Detail Format
+            if (reader.HasRows)//If query has result
+            {
+                while (reader.Read())//Show all possible results
                 {
-                    while (reader.Read())//Show all possible results
-                    {
-                        string[] data={reader.GetString(0),reader.GetString(1),reader.GetString(2),reader.GetString(3),reader.GetString(4)};
-                        ListViewItem l = new ListViewItem(data);
-                        lvEditData.Items.Add(l);
-                    }
+                    string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
+                    ListViewItem l = new ListViewItem(data);
+                    lvEditData.Items.Add(l);
                 }
-                else
-                {
-                    SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                    s.SpeakAsync("No Record found");
-                    MessageBox.Show("No Record found");
-                }
-                connection.Close();
+            }
+            else
+            {
+                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
+                s.SpeakAsync("No Record found");
+                MessageBox.Show("No Record found");
+            }
+            connection.Close();
         }
 
         private void PLV_EditData_FormClosing(object sender, FormClosingEventArgs e)
@@ -66,7 +67,7 @@ namespace PlairesEmulator
                 if (this.GetCheckedRadio(this) == null)
                     throw new Exception("No Checked Radio Button");
 
-                string sql = "UPDATE Roll SET Location='" + txtLocation.Text + "',Roll_No='" + txtRollNo.Text + "' WHERE Plan_No='"+txtPlanNo.Text+"'";
+                string sql = "UPDATE Roll SET Location='" + txtLocation.Text + "',Roll_No='" + txtRollNo.Text + "' WHERE Plan_No='" + txtPlanNo.Text + "'";
                 OleDbConnection connection = Database.Connect();
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 connection.Open();
@@ -81,7 +82,7 @@ namespace PlairesEmulator
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
-                sql = "UPDATE Roll SET Type='" + GetCheckedRadio(this).Text + "' WHERE Plan_No='" + txtPlanNo.Text+ "'";
+                sql = "UPDATE Roll SET Type='" + GetCheckedRadio(this).Text + "' WHERE Plan_No='" + txtPlanNo.Text + "'";
                 command = new OleDbCommand(sql, connection);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -95,11 +96,11 @@ namespace PlairesEmulator
                 MessageBox.Show("Data Successfully Updated");
                 PLV_EditData_Load(sender, e);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                s.SpeakAsync("Invalid Update");
-                MessageBox.Show("Invalid Update"+ex.Message);
+                s.SpeakAsync("Invalid Update "+ex.Message);
+                MessageBox.Show("Invalid Update " + ex.Message);
             }
         }
 
@@ -114,7 +115,7 @@ namespace PlairesEmulator
             return null;
         }
 
-        void SetCheckedRadio(Control container,string input)
+        void SetCheckedRadio(Control container, string input)
         {
             foreach (var control in container.Controls)
             {
@@ -131,27 +132,27 @@ namespace PlairesEmulator
         {
             //try
             //{
-                if (lvEditData.SelectedItems.Count < 1)
-                    return;
-                //MessageBox.Show(lvEditData.SelectedItems[0].Text);
-                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type,Plan_No FROM Roll WHERE (Plan_No='" + lvEditData.SelectedItems[0].Text + "');";//SQL Query
-                OleDbConnection connection = Database.Connect();
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
-                //MessageBox.Show(reader.FieldCount+"");
-                if (reader.HasRows)
+            if (lvEditData.SelectedItems.Count < 1)
+                return;
+            //MessageBox.Show(lvEditData.SelectedItems[0].Text);
+            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type,Plan_No FROM Roll WHERE (Plan_No='" + lvEditData.SelectedItems[0].Text + "');";//SQL Query
+            OleDbConnection connection = Database.Connect();
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
+            //MessageBox.Show(reader.FieldCount+"");
+            if (reader.HasRows)
+            {
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        txtPlanNo.Text = reader.GetString(4);
-                        txtLocation.Text = reader.GetString(0);
-                        txtRollNo.Text = reader.GetString(1);
-                        txtRemarks.Text = reader.GetString(2);
-                        this.SetCheckedRadio(this, reader.GetString(3));
-                        //MessageBox.Show(reader.GetString(3));
-                    }
+                    txtPlanNo.Text = reader.GetString(4);
+                    txtLocation.Text = reader.GetString(0);
+                    txtRollNo.Text = reader.GetString(1);
+                    txtRemarks.Text = reader.GetString(2);
+                    this.SetCheckedRadio(this, reader.GetString(3));
+                    //MessageBox.Show(reader.GetString(3));
                 }
+            }
             //}
             //catch { }
         }
@@ -172,6 +173,7 @@ namespace PlairesEmulator
                 txtLocation.Clear();
                 txtRemarks.Clear();
                 txtRollNo.Clear();
+                this.PLV_EditData_Load(sender, e);
             }
             else
             {

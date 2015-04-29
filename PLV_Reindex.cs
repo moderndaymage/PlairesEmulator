@@ -32,7 +32,7 @@ namespace PlairesEmulator
                 if (txtPlanNo.Text.Length > 6)
                     throw new Exception();
                 string parameter = cbxPlanType.SelectedItem.ToString() + "-" + int.Parse(txtPlanNo.Text);//Result of the Plan Type+6 digit No.
-                string sql = "UPDATE Roll SET Plan_No='" + parameter + "' WHERE Plan_No='" + cbxPlanNo.SelectedItem.ToString() + "';";//SQL Query
+                string sql = "UPDATE Roll SET Plan_No='" + parameter + "' WHERE Plan_No='" + cbxPlanNo.SelectedIndex.ToString() + "';";//SQL Query
                 OleDbConnection connection = Database.Connect();
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 connection.Open();

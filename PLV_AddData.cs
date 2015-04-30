@@ -121,5 +121,36 @@ namespace PlairesEmulator
             }
             connection.Close();
         }
+
+        private void cbxSearchByPlanType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lvAddData.Items.Clear();
+            txtPlanNo.Clear();
+            txtLocation.Clear();
+            txtRemarks.Clear();
+            txtRollNo.Clear();
+            string query = "SELECT Plan_No,Location,IIF(Remarks IS NULL,'',Remarks),Type,Roll_No FROM Roll;";
+            OleDbConnection connection = Database.Connect();
+            OleDbCommand command = new OleDbCommand(query, connection);
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
+                    ListViewItem l = new ListViewItem(data);
+                    if (reader.GetString(0).StartsWith(cbxSearchByPlanType.SelectedItem.ToString()))
+                        lvAddData.Items.Add(l);
+                }
+            }
+            else
+                MessageBox.Show("No Content");
+        }
+
+        private void btnViewAll_Click(object sender, EventArgs e)
+        {
+            PLV_AddData_Load(sender, e);
+        }
     }
 }

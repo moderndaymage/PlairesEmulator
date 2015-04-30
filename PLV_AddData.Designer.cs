@@ -53,6 +53,9 @@
             this.chRemarks = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chRollNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnViewAll = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbxSearchByPlanType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbxPlanType
@@ -154,7 +157,7 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(62, 362);
+            this.btnInsert.Location = new System.Drawing.Point(8, 360);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(164, 34);
             this.btnInsert.TabIndex = 12;
@@ -275,11 +278,50 @@
             this.chRollNo.Text = "Roll No";
             this.chRollNo.Width = 87;
             // 
+            // btnViewAll
+            // 
+            this.btnViewAll.Location = new System.Drawing.Point(179, 360);
+            this.btnViewAll.Name = "btnViewAll";
+            this.btnViewAll.Size = new System.Drawing.Size(103, 34);
+            this.btnViewAll.TabIndex = 43;
+            this.btnViewAll.Text = "View All";
+            this.btnViewAll.UseVisualStyleBackColor = true;
+            this.btnViewAll.Click += new System.EventHandler(this.btnViewAll_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(586, 19);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(144, 17);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "Search by Plan Type:";
+            // 
+            // cbxSearchByPlanType
+            // 
+            this.cbxSearchByPlanType.FormattingEnabled = true;
+            this.cbxSearchByPlanType.Items.AddRange(new object[] {
+            "(LRC)PSD",
+            "(LRC)PCS",
+            "(LRC)PCN",
+            "(LRC)RL",
+            "(LRC)RS"});
+            this.cbxSearchByPlanType.Location = new System.Drawing.Point(738, 19);
+            this.cbxSearchByPlanType.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxSearchByPlanType.Name = "cbxSearchByPlanType";
+            this.cbxSearchByPlanType.Size = new System.Drawing.Size(164, 24);
+            this.cbxSearchByPlanType.TabIndex = 44;
+            this.cbxSearchByPlanType.SelectedIndexChanged += new System.EventHandler(this.cbxSearchByPlanType_SelectedIndexChanged);
+            // 
             // PLV_AddData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 406);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.cbxSearchByPlanType);
+            this.Controls.Add(this.btnViewAll);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lvAddData);
             this.Controls.Add(this.label8);
@@ -336,5 +378,8 @@
         private System.Windows.Forms.ColumnHeader chRemarks;
         private System.Windows.Forms.ColumnHeader chType;
         private System.Windows.Forms.ColumnHeader chRollNo;
+        private System.Windows.Forms.Button btnViewAll;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbxSearchByPlanType;
     }
 }

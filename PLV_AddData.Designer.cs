@@ -46,7 +46,6 @@
             this.rbtOriginal = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnImport = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lvAddData = new System.Windows.Forms.ListView();
             this.chPlanNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -155,9 +154,9 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(14, 362);
+            this.btnInsert.Location = new System.Drawing.Point(94, 377);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(98, 53);
+            this.btnInsert.Size = new System.Drawing.Size(164, 34);
             this.btnInsert.TabIndex = 12;
             this.btnInsert.Text = "Insert to Database";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -226,16 +225,6 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "Add new Plan";
             // 
-            // btnImport
-            // 
-            this.btnImport.Location = new System.Drawing.Point(118, 362);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(164, 53);
-            this.btnImport.TabIndex = 19;
-            this.btnImport.Text = "Import From Excel (Requires MATLAB)";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -293,7 +282,6 @@
             this.ClientSize = new System.Drawing.Size(915, 423);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lvAddData);
-            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rbtOriginal);
@@ -341,7 +329,6 @@
         private System.Windows.Forms.RadioButton rbtOriginal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListView lvAddData;
         private System.Windows.Forms.ColumnHeader chPlanNo;

@@ -94,53 +94,6 @@ namespace PlairesEmulator
             return null;
         }
 
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog o = new OpenFileDialog();
-            o.Title = "Open .xlsx file to Import";
-            if (o.ShowDialog() == DialogResult.OK)
-            {
-                MLApp.MLApp matlab = new MLApp.MLApp();
-                matlab.Visible = 0;
-                matlab.Execute("xls2file('" + o.FileName + "');");
-                matlab.Quit();
-                var file2db =
-                    from contents in File.ReadAllLines("C:\\Users\\user\\Documents\\MATLAB\\Excel2file.txt")
-                    select contents;
-                foreach (string line in file2db)
-                {
-                    try
-                    {
-                        char[] separator = { '/' };
-                        string[] separatedContents = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-                        //Query Portion
-                        string sql;
-                        MessageBox.Show(separatedContents.Length + "");
-                        if (separatedContents.Length < 5)
-                            sql = "INSERT INTO Roll(Plan_No,Location,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "')";
-                        else
-                            sql = "INSERT INTO Roll(Plan_No,Location,Remarks,Type,Roll_No) VALUES('" + separatedContents[0] + "','" + separatedContents[1] + "','" + separatedContents[2] + "','" + separatedContents[3] + "','" + separatedContents[4] + "');";
-                        OleDbConnection connection = Database.Connect();
-                        OleDbCommand command = new OleDbCommand(sql, connection);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        connection.Close();
-                        SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                        s.SpeakAsync(line+" is successfully added");
-                        MessageBox.Show(line + " is successfully added");
-                    }
-                    catch
-                    {
-                        SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                        s.SpeakAsync(line + " is not Added due to Database Rules Conflict");
-                        MessageBox.Show(line+" is not Added due to Database Rules Conflict");
-                    }
-                    this.PLV_AddData_Load(sender, e);
-                }
-            }
-        }
-
         private void PLV_AddData_Load(object sender, EventArgs e)
         {
             lvAddData.Items.Clear();

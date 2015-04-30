@@ -154,7 +154,7 @@
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(94, 377);
+            this.btnInsert.Location = new System.Drawing.Point(62, 362);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(164, 34);
             this.btnInsert.TabIndex = 12;
@@ -245,7 +245,7 @@
             this.lvAddData.FullRowSelect = true;
             this.lvAddData.Location = new System.Drawing.Point(288, 51);
             this.lvAddData.Name = "lvAddData";
-            this.lvAddData.Size = new System.Drawing.Size(614, 364);
+            this.lvAddData.Size = new System.Drawing.Size(614, 345);
             this.lvAddData.TabIndex = 38;
             this.lvAddData.UseCompatibleStateImageBehavior = false;
             this.lvAddData.View = System.Windows.Forms.View.Details;
@@ -279,7 +279,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 423);
+            this.ClientSize = new System.Drawing.Size(915, 406);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lvAddData);
             this.Controls.Add(this.label8);

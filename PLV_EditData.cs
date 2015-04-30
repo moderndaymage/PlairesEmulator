@@ -99,7 +99,7 @@ namespace PlairesEmulator
             catch (Exception ex)
             {
                 SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                s.SpeakAsync("Invalid Update "+ex.Message);
+                s.SpeakAsync("Invalid Update " + ex.Message);
                 MessageBox.Show("Invalid Update " + ex.Message);
             }
         }
@@ -115,46 +115,34 @@ namespace PlairesEmulator
             return null;
         }
 
-        void SetCheckedRadio(Control container, string input)
-        {
-            foreach (var control in container.Controls)
-            {
-                RadioButton radio = control as RadioButton;
-                if (radio != null && radio.Text == input)
-                {
-                    radio.Select();
-                    return;
-                }
-            }
-        }
-
         private void lvInquiry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            if (lvEditData.SelectedItems.Count < 1)
-                return;
-            //MessageBox.Show(lvEditData.SelectedItems[0].Text);
-            string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type,Plan_No FROM Roll WHERE (Plan_No='" + lvEditData.SelectedItems[0].Text + "');";//SQL Query
-            OleDbConnection connection = Database.Connect();
-            OleDbCommand command = new OleDbCommand(sql, connection);
-            connection.Open();
-            OleDbDataReader reader = command.ExecuteReader();
-            //MessageBox.Show(reader.FieldCount+"");
-            if (reader.HasRows)
+            try
             {
-                while (reader.Read())
+                if (lvEditData.SelectedItems.Count < 1)
+                    return;
+                //MessageBox.Show(lvEditData.SelectedItems[0].Text);
+                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type,Plan_No FROM Roll WHERE (Plan_No='" + lvEditData.SelectedItems[0].Text + "');";//SQL Query
+                OleDbConnection connection = Database.Connect();
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+                //MessageBox.Show(reader.FieldCount+"");
+                if (reader.HasRows)
                 {
-                    txtPlanNo.Text = reader.GetString(4);
-                    txtLocation.Text = reader.GetString(0);
-                    txtRollNo.Text = reader.GetString(1);
-                    txtRemarks.Text = reader.GetString(2);
-                    this.SetCheckedRadio(this, reader.GetString(3));
-                    //MessageBox.Show(reader.GetString(3));
+                    while (reader.Read())
+                    {
+                        txtPlanNo.Text = reader.GetString(4);
+                        txtLocation.Text = reader.GetString(0);
+                        txtRollNo.Text = reader.GetString(1);
+                        txtRemarks.Text = reader.GetString(2);
+                        txtType.Text =  reader.GetString(3);
+                        //MessageBox.Show(reader.GetString(3));
+                    }
                 }
+                connection.Close();
             }
-            //}
-            //catch { }
+            catch { }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -190,9 +178,9 @@ namespace PlairesEmulator
             txtLocation.Clear();
             txtRemarks.Clear();
             txtRollNo.Clear();
-            string query="SELECT Plan_No,Location,IIF(Remarks IS NULL,'',Remarks),Type,Roll_No FROM Roll;";
+            string query = "SELECT Plan_No,Location,IIF(Remarks IS NULL,'',Remarks),Type,Roll_No FROM Roll;";
             OleDbConnection connection = Database.Connect();
-            OleDbCommand command = new OleDbCommand(query,connection);
+            OleDbCommand command = new OleDbCommand(query, connection);
             connection.Open();
             OleDbDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -201,7 +189,7 @@ namespace PlairesEmulator
                 {
                     string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
                     ListViewItem l = new ListViewItem(data);
-                    if(reader.GetString(0).StartsWith(cbxPlanType.SelectedItem.ToString()))
+                    if (reader.GetString(0).StartsWith(cbxPlanType.SelectedItem.ToString()))
                         lvEditData.Items.Add(l);
                 }
             }

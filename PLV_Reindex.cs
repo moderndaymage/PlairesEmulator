@@ -32,7 +32,7 @@ namespace PlairesEmulator
                 if (txtPlanNo.Text.Length > 6)
                     throw new Exception();
                 string parameter = cbxPlanType.SelectedItem.ToString() + "-" + int.Parse(txtPlanNo.Text);//Result of the Plan Type+6 digit No.
-                string sql = "UPDATE Roll SET Plan_No='" + parameter + "' WHERE Plan_No='" + cbxPlanNo.SelectedIndex.ToString() + "';";//SQL Query
+                string sql = "UPDATE Roll SET Plan_No='" + parameter + "' WHERE Plan_No='" + txtOldPlanNo.Text + "';";//SQL Query
                 OleDbConnection connection = Database.Connect();
                 OleDbCommand command = new OleDbCommand(sql, connection);
                 connection.Open();
@@ -42,68 +42,13 @@ namespace PlairesEmulator
                 s.SpeakAsync("Data Successfully Reindexed");
                 MessageBox.Show("Data Successfully Reindexed");
                 connection.Close();
-                modifyComboBox();
+                PLV_Reindex_Load(sender, e);
             }
             catch
             {
                 SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
                 s.SpeakAsync("Error on Plan Reindexing");
                 MessageBox.Show("Error on Plan Reindexing");
-            }
-        }
-
-        private void cbxPlanNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //MessageBox.Show(cbxPlanNo.SelectedItem.ToString());
-                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type FROM Roll WHERE (Plan_No='" + cbxPlanNo.SelectedItem.ToString() + "')";//SQL Query
-                //Note IIF is used to make sure that the null values will not cause exceptions
-                string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-                OleDbConnection connection = new OleDbConnection(connetionString);
-                OleDbCommand command = new OleDbCommand(sql, connection);
-                connection.Open();
-                OleDbDataReader reader = command.ExecuteReader();
-
-                //Outputs the result in the All the forms Oriented in Detail Format
-                if (reader.HasRows)//If query has result
-                {
-                    while (reader.Read())//Show all possible results
-                    {
-                        string[] values = new string[4];
-                        values[0] = reader.GetString(0);//Location
-                        values[1] = reader.GetString(1);//Roll No.
-                        values[2] = reader.GetString(2);//Remarks
-                        values[3] = reader.GetString(3);//Type of plan
-
-                        txtLocation.Text = values[0];
-                        txtRollNo.Text = values[1];
-                        txtRemarks.Text = values[2];
-                        this.SetCheckedRadio(this, values[3]);
-                    }
-                }
-                else
-                {
-                    SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                    s.SpeakAsync("No Record found");
-                    MessageBox.Show("No Record found");
-                }
-                connection.Close();
-            }
-            catch
-            {
-                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                s.SpeakAsync("Invalid Plan No");
-                MessageBox.Show("Invalid Plan No");
-            }
-        }
-        void SetCheckedRadio(Control container, string input)
-        {
-            foreach (var control in container.Controls)
-            {
-                RadioButton radio = control as RadioButton;
-                if (radio != null && radio.Text == input)
-                    radio.Select();
             }
         }
 
@@ -114,19 +59,21 @@ namespace PlairesEmulator
 
         private void PLV_Reindex_Load(object sender, EventArgs e)
         {
-            string sql = "SELECT Plan_No from Roll ORDER BY Plan_No;";//SQL Query
+            lvEditData.Items.Clear();
+            string sql = "SELECT Plan_No,Location,IIF(Remarks IS NULL,'',Remarks),Type,Roll_No from Roll ORDER BY Plan_No;";//SQL Query
             string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
             OleDbConnection connection = new OleDbConnection(connetionString);
             OleDbCommand command = new OleDbCommand(sql, connection);
             connection.Open();
             OleDbDataReader reader = command.ExecuteReader();
 
-            //Outputs the result in the ListView Oriented in Detail Format
             if (reader.HasRows)//If query has result
             {
                 while (reader.Read())//Show all possible results
                 {
-                    cbxPlanNo.Items.Add(reader.GetString(0));
+                    string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
+                    ListViewItem l = new ListViewItem(data);
+                    lvEditData.Items.Add(l);
                 }
             }
             else
@@ -137,31 +84,66 @@ namespace PlairesEmulator
             }
             connection.Close();
         }
-        private void modifyComboBox()
+
+        private void cbxSearchByPlanType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbxPlanNo.Items.Clear();
-            string sql = "SELECT Plan_No from Roll ORDER BY Plan_No;";//SQL Query
-            string connetionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\user\\Documents\\PlairesEmulator\\Plaires.accdb;Persist Security Info=False;";//Tentative Database Location for Prototype Dev't
-            OleDbConnection connection = new OleDbConnection(connetionString);
-            OleDbCommand command = new OleDbCommand(sql, connection);
+            lvEditData.Items.Clear();
+            txtPlanNo.Clear();
+            txtLocation.Clear();
+            txtRemarks.Clear();
+            txtRollNo.Clear();
+            string query = "SELECT Plan_No,Location,IIF(Remarks IS NULL,'',Remarks),Type,Roll_No FROM Roll;";
+            OleDbConnection connection = Database.Connect();
+            OleDbCommand command = new OleDbCommand(query, connection);
             connection.Open();
             OleDbDataReader reader = command.ExecuteReader();
-
-            //Outputs the result in the ListView Oriented in Detail Format
-            if (reader.HasRows)//If query has result
+            if (reader.HasRows)
             {
-                while (reader.Read())//Show all possible results
+                while (reader.Read())
                 {
-                    cbxPlanNo.Items.Add(reader.GetString(0));
+                    string[] data = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4) };
+                    ListViewItem l = new ListViewItem(data);
+                    if (reader.GetString(0).StartsWith(cbxSearchByPlanType.SelectedItem.ToString()))
+                        lvEditData.Items.Add(l);
                 }
             }
             else
+                MessageBox.Show("No Content");
+        }
+
+        private void btnViewAll_Click(object sender, EventArgs e)
+        {
+            PLV_Reindex_Load(sender, e);
+        }
+
+        private void lvEditData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
-                SpeechSynthesizer s = new SpeechSynthesizer();//Speech Output
-                s.SpeakAsync("No Record found");
-                MessageBox.Show("No Record found");
+                if (lvEditData.SelectedItems.Count < 1)
+                    return;
+                //MessageBox.Show(lvEditData.SelectedItems[0].Text);
+                string sql = "SELECT Location,Roll_No,IIF(Remarks IS NULL,' ',Remarks),Type,Plan_No FROM Roll WHERE (Plan_No='" + lvEditData.SelectedItems[0].Text + "');";//SQL Query
+                OleDbConnection connection = Database.Connect();
+                OleDbCommand command = new OleDbCommand(sql, connection);
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+                //MessageBox.Show(reader.FieldCount+"");
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        txtOldPlanNo.Text = reader.GetString(4);
+                        txtLocation.Text = reader.GetString(0);
+                        txtRollNo.Text = reader.GetString(1);
+                        txtRemarks.Text = reader.GetString(2);
+                        txtType.Text = reader.GetString(3);
+                        //MessageBox.Show(reader.GetString(3));
+                    }
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch { }
         }
     }
 }

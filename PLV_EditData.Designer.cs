@@ -56,12 +56,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxPlanType = new System.Windows.Forms.ComboBox();
             this.btnViewAll = new System.Windows.Forms.Button();
+            this.txtType = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // rbtOriginal
             // 
             this.rbtOriginal.AutoSize = true;
-            this.rbtOriginal.Location = new System.Drawing.Point(76, 208);
+            this.rbtOriginal.Location = new System.Drawing.Point(78, 242);
             this.rbtOriginal.Name = "rbtOriginal";
             this.rbtOriginal.Size = new System.Drawing.Size(78, 21);
             this.rbtOriginal.TabIndex = 32;
@@ -72,7 +73,7 @@
             // rbtTracingCloth
             // 
             this.rbtTracingCloth.AutoSize = true;
-            this.rbtTracingCloth.Location = new System.Drawing.Point(76, 235);
+            this.rbtTracingCloth.Location = new System.Drawing.Point(78, 269);
             this.rbtTracingCloth.Name = "rbtTracingCloth";
             this.rbtTracingCloth.Size = new System.Drawing.Size(113, 21);
             this.rbtTracingCloth.TabIndex = 31;
@@ -83,7 +84,7 @@
             // rbtWhitePrint
             // 
             this.rbtWhitePrint.AutoSize = true;
-            this.rbtWhitePrint.Location = new System.Drawing.Point(76, 289);
+            this.rbtWhitePrint.Location = new System.Drawing.Point(78, 323);
             this.rbtWhitePrint.Name = "rbtWhitePrint";
             this.rbtWhitePrint.Size = new System.Drawing.Size(98, 21);
             this.rbtWhitePrint.TabIndex = 30;
@@ -94,7 +95,7 @@
             // rbtBluePrint
             // 
             this.rbtBluePrint.AutoSize = true;
-            this.rbtBluePrint.Location = new System.Drawing.Point(76, 262);
+            this.rbtBluePrint.Location = new System.Drawing.Point(78, 296);
             this.rbtBluePrint.Name = "rbtBluePrint";
             this.rbtBluePrint.Size = new System.Drawing.Size(90, 21);
             this.rbtBluePrint.TabIndex = 29;
@@ -104,7 +105,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(76, 321);
+            this.btnUpdate.Location = new System.Drawing.Point(78, 355);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 34);
             this.btnUpdate.TabIndex = 28;
@@ -115,7 +116,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 208);
+            this.label6.Location = new System.Drawing.Point(25, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 17);
             this.label6.TabIndex = 27;
@@ -208,7 +209,7 @@
             this.lvEditData.FullRowSelect = true;
             this.lvEditData.Location = new System.Drawing.Point(321, 49);
             this.lvEditData.Name = "lvEditData";
-            this.lvEditData.Size = new System.Drawing.Size(614, 306);
+            this.lvEditData.Size = new System.Drawing.Size(614, 340);
             this.lvEditData.TabIndex = 35;
             this.lvEditData.UseCompatibleStateImageBehavior = false;
             this.lvEditData.View = System.Windows.Forms.View.Details;
@@ -258,7 +259,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(157, 321);
+            this.btnRemove.Location = new System.Drawing.Point(159, 355);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 34);
             this.btnRemove.TabIndex = 38;
@@ -269,7 +270,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 330);
+            this.label9.Location = new System.Drawing.Point(14, 364);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 17);
             this.label9.TabIndex = 39;
@@ -303,7 +304,7 @@
             // 
             // btnViewAll
             // 
-            this.btnViewAll.Location = new System.Drawing.Point(238, 321);
+            this.btnViewAll.Location = new System.Drawing.Point(240, 355);
             this.btnViewAll.Name = "btnViewAll";
             this.btnViewAll.Size = new System.Drawing.Size(75, 34);
             this.btnViewAll.TabIndex = 42;
@@ -311,11 +312,20 @@
             this.btnViewAll.UseVisualStyleBackColor = true;
             this.btnViewAll.Click += new System.EventHandler(this.btnViewAll_Click);
             // 
+            // txtType
+            // 
+            this.txtType.Enabled = false;
+            this.txtType.Location = new System.Drawing.Point(76, 214);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(162, 22);
+            this.txtType.TabIndex = 53;
+            // 
             // PLV_EditData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 361);
+            this.ClientSize = new System.Drawing.Size(947, 401);
+            this.Controls.Add(this.txtType);
             this.Controls.Add(this.btnViewAll);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbxPlanType);
@@ -378,5 +388,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbxPlanType;
         private System.Windows.Forms.Button btnViewAll;
+        private System.Windows.Forms.TextBox txtType;
     }
 }
